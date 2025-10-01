@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE Motors | Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Header Partial -->
+    <%- include('./partials/header') %>
+
+        <!-- Navigation Partial -->
+        <%- include('./partials/nav') %>
+
+            <main>
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero-content">
+                        <h1>Welcome to CSE Motors</h1>
+                        <p>Your trusted dealership for quality new and used cars.</p>
+                        <a href="/inventory" class="btn-primary">Browse Inventory</a>
+                    </div>
+                    <img src="/images/hero-car.webp" alt="A sleek new car at CSE Motors" loading="lazy" width="600"
+                        height="350">
+                </section>
+
+                <!-- Featured Cars -->
+                <section class="featured">
+                    <h2>Featured Vehicles</h2>
+                    <div class="car-grid">
+                        <article class="car-card">
+                            <img src="/images/car1.webp" alt="Red 2024 Sedan" loading="lazy" width="300" height="200">
+                            <h3>2024 Sedan</h3>
+                            <p>Reliable and efficient — starting at $25,000</p>
+                            <a href="/cars/1" class="btn-secondary">View Details</a>
+                        </article>
+
+                        <article class="car-card">
+                            <img src="/images/car2.webp" alt="Blue 2023 SUV" loading="lazy" width="300" height="200">
+                            <h3>2023 SUV</h3>
+                            <p>Spacious and powerful — starting at $32,500</p>
+                            <a href="/cars/2" class="btn-secondary">View Details</a>
+                        </article>
+
+                        <article class="car-card">
+                            <img src="/images/car3.webp" alt="White 2022 Pickup Truck" loading="lazy" width="300"
+                                height="200">
+                            <h3>2022 Pickup Truck</h3>
+                            <p>Durable and strong — starting at $28,000</p>
+                            <a href="/cars/3" class="btn-secondary">View Details</a>
+                        </article>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer Partial -->
+            <%- include('./partials/footer') %>
+</body>
+
+</html>
