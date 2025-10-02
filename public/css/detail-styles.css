@@ -1,0 +1,121 @@
+ /* Vehicle Detail Styles */
+
+ .vehicle-detail {
+     display: flex;
+     flex-direction: column;
+     gap: 2rem;
+     margin: 2rem 0;
+ }
+
+ .vehicle-image {
+     width: 100%;
+ }
+
+ .vehicle-image img {
+     width: 100%;
+     height: auto;
+     border-radius: 8px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .vehicle-info {
+     width: 100%;
+ }
+
+ .vehicle-price {
+     margin-bottom: 1.5rem;
+     padding-bottom: 1rem;
+     border-bottom: 2px solid #333;
+ }
+
+ .vehicle-price h2 {
+     color: #d32f2f;
+     font-size: 2.5rem;
+     font-weight: bold;
+     margin: 0;
+ }
+
+ .vehicle-details-list {
+     display: grid;
+     gap: 1rem;
+     margin-bottom: 2rem;
+ }
+
+ .detail-item {
+     display: flex;
+     padding: 0.75rem 0;
+     border-bottom: 1px solid #e0e0e0;
+ }
+
+ .detail-label {
+     font-weight: bold;
+     color: #333;
+     min-width: 100px;
+     margin-right: 1rem;
+ }
+
+ .detail-value {
+     color: #555;
+     font-size: 1.1rem;
+ }
+
+ .vehicle-description {
+     margin-top: 2rem;
+     padding: 1.5rem;
+     background-color: #f5f5f5;
+     border-radius: 8px;
+ }
+
+ .vehicle-description h3 {
+     margin-top: 0;
+     margin-bottom: 1rem;
+     color: #333;
+     font-size: 1.5rem;
+ }
+
+ .vehicle-description p {
+     line-height: 1.6;
+     color: #555;
+     margin: 0;
+ }
+
+ /* Tablet and larger screens */
+ @media screen and (min-width: 768px) {
+     .vehicle-detail {
+         flex-direction: row;
+         gap: 3rem;
+     }
+
+     .vehicle-image {
+         flex: 1;
+         max-width: 50%;
+     }
+
+     .vehicle-info {
+         flex: 1;
+     }
+
+     .vehicle-price h2 {
+         font-size: 3rem;
+     }
+
+     .detail-item {
+         padding: 1rem 0;
+     }
+
+     .detail-label {
+         min-width: 120px;
+     }
+ }
+
+ /* Large desktop screens */
+ @media screen and (min-width: 1024px) {
+     .vehicle-detail {
+         max-width: 1200px;
+         margin: 2rem auto;
+     }
+
+     .vehicle-description {
+         padding: 2rem;
+     }
+ }

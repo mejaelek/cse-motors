@@ -1,37 +1,80 @@
-const express = require('express');
-const path = require('path');
+/* ******************************************
+* This server.js file is the primary file of the 
+* application. It is used to control the project.
+*******************************************/
 
-const app = express();
-const port = process.env.PORT || 3000;
+/* ***********************
+ * Require Statements
+ *************************/
+const express = require("express")
+const expressLayouts = require("express-ejs-layouts")
+const env = require("dotenv").config()
+const app = express()
+const static = require("./routes/static")
+const baseController = require("./controllers/baseController")
+const inventoryRoute = require("./routes/inventoryRoute")
+const errorRoute = require("./routes/errorRoute")
+const utilities = require("./utilities/")
 
-// Set EJS as the template engine
-app.set('view engine', 'ejs');
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
 
-// Set views folder explicitly (not required but good practice)
-app.set('views', path.join(__dirname, 'views'));
+/* ***********************
+ * Routes
+ *************************/
+app.use(static)
 
-// Serve static files from public folder
-app.use(express.static(path.join(__dirname, 'public')));
+// Index route
+app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// Routes
-app.get('/', (req, res) => {
-    res.render('index'); // renders views/index.ejs
-});
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
-// Example extra routes (optional for now)
-app.get('/inventory', (req, res) => {
-    res.send('<h1>Inventory Page Coming Soon</h1>');
-});
+// Error routes
+app.use("/error", errorRoute)
 
-app.get('/services', (req, res) => {
-    res.send('<h1>Services Page Coming Soon</h1>');
-});
+// File Not Found Route - must be last route
+app.use(async (req, res, next) => {
+    next({ status: 404, message: 'Sorry, we appear to have lost that page.' })
+})
 
-app.get('/contact', (req, res) => {
-    res.send('<h1>Contact Page Coming Soon</h1>');
-});
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+    let nav = await utilities.getNav()
+    console.error(`Error at: "${req.originalUrl}": ${err.message}`)
 
-// Start server
+    if (err.status == 404) {
+        message = err.message
+    } else {
+        message = 'Oh no! There was a crash. Maybe try a different route?'
+    }
+
+    res.status(err.status || 500)
+    res.render("errors/error", {
+        title: err.status || 'Server Error',
+        message,
+        nav,
+        status: err.status || 500
+    })
+})
+
+/* ***********************
+ * Local Server Information
+ * Values from .env (environment) file
+ *************************/
+const port = process.env.PORT
+const host = process.env.HOST
+
+/* ***********************
+ * Log statement to confirm server operation
+ *************************/
 app.listen(port, () => {
-    console.log(`🚗 CSE Motors running at http://localhost:${port}`);
-});
+    console.log(`app listening on ${host}:${port}`)
+})

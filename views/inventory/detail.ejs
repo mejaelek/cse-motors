@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %> | CSE Motors
+    </title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <%- include('../partials/header') %>
+            <%- include('../partials/navigation') %>
+
+                <main>
+                    <h1>
+                        <%= inv_year %>
+                            <%= inv_make %>
+                                <%= inv_model %>
+                    </h1>
+
+                    <%- detailView %>
+
+                </main>
+
+                <%- include('../partials/footer') %>
+    </div>
+</body>
+
+</html>
